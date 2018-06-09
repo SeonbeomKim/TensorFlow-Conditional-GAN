@@ -8,8 +8,8 @@ Conditional-GAN paper : https://arxiv.org/pdf/1411.1784.pdf
 
 ## Conditional_GAN.py
     * loss function는 https://github.com/SeonbeomKim/TensorFlow-vanilla-GAN 의 v2와 동일
+    * dataset : MNIST
   
   
-  
-## Conditional_GAN.py result (after 290 epochs of training)  
+## Conditional_GAN MNIST result (after 290 epochs of training)  
 ![Conditional_GAN.py](./generate/290.png)
