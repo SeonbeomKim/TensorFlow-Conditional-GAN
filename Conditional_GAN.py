@@ -51,9 +51,9 @@ class GAN:
 
 
 		with tf.name_scope("loss"):
-			#Discriminator 입장에서 최대화 해야 하는 값
+			#Discriminator 입장에서 최소화 해야 하는 값
 			self.D_loss = self.Discriminator_loss_function(self.D_X_logits, self.D_Gen_logits)
-			#Generator 입장에서 최대화 해야 하는 값.
+			#Generator 입장에서 최소화 해야 하는 값.
 			self.G_loss = self.Generator_loss_function(self.D_Gen_logits)
 
 
@@ -74,8 +74,8 @@ class GAN:
 			#tensorboard
 			self.D_X_tensorboard = tf.placeholder(tf.float32) #학습데이터가 진짜일 확률
 			self.D_Gen_tensorboard = tf.placeholder(tf.float32) #노이즈로부터 생성된 데이터가 진짜일 확률 
-			self.D_value_tensorboard = tf.placeholder(tf.float32) #Discriminator 입장에서 최대화 해야 하는 값
-			self.G_value_tensorboard = tf.placeholder(tf.float32) #Generator 입장에서 최대화 해야 하는 값.
+			self.D_value_tensorboard = tf.placeholder(tf.float32) #Discriminator 입장에서 최소화 해야 하는 값
+			self.G_value_tensorboard = tf.placeholder(tf.float32) #Generator 입장에서 최소화 해야 하는 값.
 
 			self.D_X_summary = tf.summary.scalar("D_X", self.D_X_tensorboard) 
 			self.D_Gen_summary = tf.summary.scalar("D_Gen", self.D_Gen_tensorboard) 
@@ -157,7 +157,7 @@ class GAN:
 
 
 
-	#Generator 입장에서 최대화 해야 하는 값.
+	#Generator 입장에서 최소화 해야 하는 값.
 	def Generator_loss_function(self, D_Gen_logits):
 		#return tf.reduce_mean(tf.log(D_Gen))
 			# tf.reduce_mean(tf.log(1-D_Gen)) 를 최소화 하도록 해도 되지만 학습이 느림.
@@ -265,7 +265,7 @@ def run(model, train_set, restore = 0):
 
 	#학습 진행
 	for epoch in range(restore + 1, 10001):
-		#Discriminator 입장에서 최대화 해야 하는 값, #Generator 입장에서 최대화 해야 하는 값, #학습데이터가 진짜일 확률, #노이즈로부터 생성된 데이터가 진짜일 확률  
+		#Discriminator 입장에서 최소화 해야 하는 값, #Generator 입장에서 최소화 해야 하는 값, #학습데이터가 진짜일 확률, #노이즈로부터 생성된 데이터가 진짜일 확률  
 		D_value, G_value, D_X, D_Gen = train(model, train_set)
 
 		print("epoch : ", epoch, " D_value : ", D_value, " G_value : ", G_value, " 학습데이터 진짜일 확률 : ", D_X, " 생성데이터 진짜일 확률 : ", D_Gen)
