@@ -1,5 +1,6 @@
 # TensorFlow-Conditional-GAN
-Conditional GAN  
+
+(Conditional-GAN)Conditional Generative Adversarial Network
 
 Vanilla GAN 모델을 활용하여 원하는 target의 이미지를 생성할 수 있는 모델
 
